@@ -7,20 +7,31 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="js/unicode.js"></script>
+  <script type="text/javascript">
+	function createSearch() 
+	{
+		var txt = "";
+		var lines = document.getElementById("searchContent").value.split('\n');;
+    	for (var i = 0; i < lines.length; i++) {
+        	txt = txt + "\t" + lines[i];
+    	}
+    	document.getElementById("output").innerHTML = txt;
+	}
+</script>
  </head>
  <body>
   <div id="container">
    <div class="heading"><h1>Word Search</h1></div>
    <div class="outerWrapper">    
     <div class="innerWrapper">
-   <form method="post" action="unicode.html">
+   <form>
     <div> 
 		<label>Title</label><br>
 		<input type="text" id="title" placeholder="Word Search"/> 
 	</div>
 	<div>
 		<label>Words</label><br> 
-		<textarea class="unicode" id="dyn" lang="ta" rows="20" cols="20" placeholder="List down your words here..."></textarea>
+		<textarea class="unicode" id="searchContent" lang="ta" rows="20" cols="20" placeholder="List down your words here..."></textarea>
 	</div>
 	<div>
 		<label>No. of letters Down</label>
@@ -41,6 +52,10 @@
      		<option value="25">25</option>
      		<option value="30">30</option>
 		</select>
+	</div>
+	<div>
+		<input type="button" value="Create" onclick="createSearch();"/>
+		<p id="output"></p>
 	</div>
    </form>
    </div>
