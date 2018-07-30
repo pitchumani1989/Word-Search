@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Word Search</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <link rel="stylesheet" href="css/unicode.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="js/unicode.js"></script>
+ </head>
+ <body>
+  <div id="container">
+   <div class="heading"><h1>Word Search</h1></div>
+   <div class="outerWrapper">    
+    <div class="innerWrapper">
+   <form method="post" action="unicode.html">
+    <div> 
+		<label>Title</label><br>
+		<input type="text" id="title" placeholder="Word Search"/> 
+	</div>
+	<div>
+		<label>Words</label><br> 
+		<textarea class="unicode" id="dyn" lang="ta" rows="20" cols="20" placeholder="List down your words here..."></textarea>
+	</div>
+	<div>
+		<label>No. of letters Down</label>
+		<select id="lettersDownCount">
+     		<option value="5">5</option>
+     		<option value="10" selected="selected">10</option>
+     		<option value="15">15</option>
+     		<option value="20">20</option>
+     		<option value="25">25</option>
+     		<option value="30">30</option>
+		</select>
+		<label>No. of letters Across</label>
+		<select id="lettersDownAcross">
+     		<option value="5">5</option>
+     		<option value="10" selected="selected">10</option>
+     		<option value="15">15</option>
+     		<option value="20">20</option>
+     		<option value="25">25</option>
+     		<option value="30">30</option>
+		</select>
+	</div>
+   </form>
+   </div>
+  </div>
+   </div>
+ </body>
+</html>
