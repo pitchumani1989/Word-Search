@@ -28,7 +28,8 @@ label{
 
 #container{
   width: 600px;
-  margin: 20px auto;
+  margin: 20px;
+  margin-left: 500px;
 }
 
 .outerWrapper{
@@ -56,6 +57,14 @@ select{
 
 input[type=submit], .linkButton{
   width: 100px;
+  border-radius: 5px;
+  box-shadow: 1px 0px 2px 0 #222;
+  background: url(../img/button.jpg) repeat-x;
+}
+
+input[type=button]{
+  width: 75px;
+  height:25px;
   border-radius: 5px;
   box-shadow: 1px 0px 2px 0 #222;
   background: url(../img/button.jpg) repeat-x;
