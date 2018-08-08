@@ -11,9 +11,9 @@
 	function onCreate() 
 	{
 		var txt = "";
-		var lines = document.getElementById("searchContent").value.split('\n');;
-    	for (var i = 0; i < lines.length; i++) {
-        	txt = txt + "\t" + lines[i];
+		var searchWords = document.getElementById("searchContent").value.split('\n');;
+    	for (var i = 0; i < searchWords.length; i++) {
+        	txt = txt + "\t" + searchWords[i];
     	}
 		
 		// create array with random values
@@ -30,6 +30,19 @@
 				sampleArray.push(randaomChar);
 			}
 			searchArray.push(sampleArray);
+    	}
+
+		// update array with search words horizontally
+    	for (var i = 0; i < searchWords.length; i++) 
+		{
+			var wordCount = searchWords[i].length;
+			var rowNumber = Math.floor(Math.random() * rows) + 1;
+			var colNumber = Math.floor(Math.random() * wordCount) + 1;
+			for(var j = 0; j < wordCount; j++)
+			{
+				searchArray[rowNumber][colNumber] = searchWords[i].charAt(j);
+				colNumber++;
+			}
     	}
 
 		//print array values in table format
