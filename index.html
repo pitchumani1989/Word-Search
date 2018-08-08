@@ -8,15 +8,36 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="js/unicode.js"></script>
   <script type="text/javascript">
-	function createSearch() 
+	function onCreate() 
 	{
 		var txt = "";
 		var lines = document.getElementById("searchContent").value.split('\n');;
     	for (var i = 0; i < lines.length; i++) {
         	txt = txt + "\t" + lines[i];
     	}
-    	document.getElementById("output").innerHTML = txt;
+		
+		var searchArray = [[]];
+		var rows = document.getElementById("lettersDownAcross").value;
+		var cols = document.getElementById("lettersDownCount").value;
+		var result = "<table border=1>";
+    	for (var i = 0; i < rows; i++) {
+			result += "<tr>";
+			var sampleArray = [];
+		    for (var j = 0; j < cols; j++) 
+			{
+				var randaomNumber = Math.floor(Math.random() * (122 - 97)) + 97;
+				var randaomChar = String.fromCharCode(randaomNumber);
+				sampleArray.push(randaomChar);
+				result += "<td>" + randaomChar + "</td>";
+			}
+    		result += "</tr>";
+			searchArray.push(sampleArray);
+    	}
+		result += "</tr>";
+		result += "</table>";
+		document.getElementById("output").innerHTML = result;
 	}
+
 </script>
  </head>
  <body>
@@ -54,7 +75,7 @@
 		</select>
 	</div>
 	<div>
-		<input type="button" value="Create" onclick="createSearch();"/>
+		<input type="button" value="Create" onclick="onCreate();"/>
 		<p id="output"></p>
 	</div>
    </form>
