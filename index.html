@@ -16,23 +16,33 @@
         	txt = txt + "\t" + lines[i];
     	}
 		
+		// create array with random values
 		var searchArray = [[]];
 		var rows = document.getElementById("lettersDownAcross").value;
 		var cols = document.getElementById("lettersDownCount").value;
-		var result = "<table border=1>";
-    	for (var i = 0; i < rows; i++) {
-			result += "<tr>";
+    	for (var i = 0; i < rows; i++) 
+		{
 			var sampleArray = [];
 		    for (var j = 0; j < cols; j++) 
 			{
 				var randaomNumber = Math.floor(Math.random() * (122 - 97)) + 97;
 				var randaomChar = String.fromCharCode(randaomNumber);
 				sampleArray.push(randaomChar);
-				result += "<td>" + randaomChar + "</td>";
 			}
-    		result += "</tr>";
 			searchArray.push(sampleArray);
     	}
+
+		//print array values in table format
+		var result = "<table border=1>";
+		for (var i = 0; i < searchArray.length; i++) 
+		{
+			result += "<tr>";
+    		for (var j = 0; j < searchArray[i].length; j++) 
+			{
+				result += "<td>" + searchArray[i][j] + "</td>";
+    		}
+    		result += "</tr>";
+		}
 		result += "</tr>";
 		result += "</table>";
 		document.getElementById("output").innerHTML = result;
