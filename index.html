@@ -10,6 +10,7 @@
   <script type="text/javascript">
 	function onCreate() 
 	{
+		var tamilChars = ["அ", "ஆ", "இ", "ஈ", "உ", "ஊ", "எ", "ஏ", "ஐ", "ஒ", "ஓ", "ஔ", "க", "ங", "ச", "ஞ", "ட", "ண", "த", "ந", "ன", "ப", "ம", "ய", "ர", "ற", "ல", "ள", "ழ", "வ", "ஷ", "ஸ", "ஹ", "ஜ"]
 		var txt = "";
 		var searchWords = document.getElementById("searchContent").value.split('\n');;
     	for (var i = 0; i < searchWords.length; i++) {
@@ -22,14 +23,13 @@
 		var cols = document.getElementById("lettersDownCount").value;
     	for (var i = 0; i < rows; i++) 
 		{
-			var sampleArray = [];
-		    for (var j = 0; j < cols; j++) 
+			var innerArray = [];
+		    for (var j = 0; j < cols; j++)
 			{
-				var randaomNumber = Math.floor(Math.random() * (122 - 97)) + 97;
-				var randaomChar = String.fromCharCode(randaomNumber);
-				sampleArray.push(randaomChar);
+				var randaomChar = tamilChars[Math.floor(Math.random() * tamilChars.length)];
+				innerArray.push(randaomChar);
 			}
-			searchArray.push(sampleArray);
+			searchArray.push(innerArray);
     	}
 
 		// update array with search words horizontally
@@ -46,7 +46,7 @@
     	}
 
 		//print array values in table format
-		var result = "<table border=1>";
+		var result = "<table cellspacing=10>";
 		for (var i = 0; i < searchArray.length; i++) 
 		{
 			result += "<tr>";
