@@ -5,17 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <link rel="stylesheet" href="css/unicode.css" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://chancejs.com/chance.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="js/unicode.js"></script>
   <script type="text/javascript">
 	function onCreate() 
 	{
 		var tamilChars = ["அ", "ஆ", "இ", "ஈ", "உ", "ஊ", "எ", "ஏ", "ஐ", "ஒ", "ஓ", "ஔ", "க", "ங", "ச", "ஞ", "ட", "ண", "த", "ந", "ன", "ப", "ம", "ய", "ர", "ற", "ல", "ள", "ழ", "வ", "ஷ", "ஸ", "ஹ", "ஜ"]
-		var txt = "";
-		var searchWords = document.getElementById("searchContent").value.split('\n');;
-    	for (var i = 0; i < searchWords.length; i++) {
-        	txt = txt + "\t" + searchWords[i];
-    	}
 		
 		// create array with random values
 		var searchArray = [[]];
@@ -23,26 +19,31 @@
 		var cols = document.getElementById("lettersDownCount").value;
     	for (var i = 0; i < rows; i++) 
 		{
-			var innerArray = [];
+			var rowArray = [];
 		    for (var j = 0; j < cols; j++)
 			{
 				var randaomChar = tamilChars[Math.floor(Math.random() * tamilChars.length)];
-				innerArray.push(randaomChar);
+				rowArray.push(randaomChar);
 			}
-			searchArray.push(innerArray);
+			searchArray.push(rowArray);
     	}
 
 		// update array with search words horizontally
+		var searchWordsPosition = [[]];
+		var searchWords = document.getElementById("searchContent").value.split('\n');
+		var uniqueRowIndexes = chance.unique(chance.natural, searchWords.length, {min: 1, max: rows});
     	for (var i = 0; i < searchWords.length; i++) 
 		{
 			var wordCount = searchWords[i].length;
-			var rowNumber = Math.floor(Math.random() * rows) + 1;
-			var colNumber = Math.floor(Math.random() * wordCount) + 1;
+			var colIndex = Math.floor(Math.random() * (cols - wordCount)) + 1;
+			var wordPosition = [];
 			for(var j = 0; j < wordCount; j++)
 			{
-				searchArray[rowNumber][colNumber] = searchWords[i].charAt(j);
-				colNumber++;
+				searchArray[uniqueRowIndexes[i]][colIndex] = searchWords[i].charAt(j);
+				wordPosition.push(uniqueRowIndexes[i]+"-"+colIndex);
+				colIndex++;
 			}
+			searchWordsPosition.push(wordPosition);
     	}
 
 		//print array values in table format
@@ -58,7 +59,8 @@
 		}
 		result += "</tr>";
 		result += "</table>";
-		document.getElementById("output").innerHTML = result;
+		document.getElementById("table").innerHTML = result;
+		document.getElementById("positions").innerHTML = searchWordsPosition;
 	}
 
 </script>
@@ -99,7 +101,8 @@
 	</div>
 	<div>
 		<input type="button" value="Create" onclick="onCreate();"/>
-		<p id="output"></p>
+		<p id="table"></p>
+		<p id="positions"></p>
 	</div>
    </form>
    </div>
