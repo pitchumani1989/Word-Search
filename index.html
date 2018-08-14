@@ -29,7 +29,9 @@
 	function createSearchArray()
 	{
 		var tamilChars = ["அ", "ஆ", "இ", "ஈ", "உ", "ஊ", "எ", "ஏ", "ஐ", "ஒ", "ஓ", "ஔ", "க", "ங", "ச", "ஞ", "ட", "ண", "த", "ந", "ன", "ப", "ம", "ய", "ர", "ற", "ல", "ள", "ழ", "வ", "ஷ", "ஸ", "ஹ", "ஜ"]
-		
+		showAnswer = false;
+		searchWordPositions = [];
+
 		// create array with random values
 		var searchArray = [[]];
 		var rows = document.getElementById("lettersDownAcross").value;
