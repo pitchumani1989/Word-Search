@@ -15,13 +15,15 @@
   <script type="text/javascript" src="js/unicode.js"></script>
   <script type="text/javascript">
 	var searchArray = [[]];
-	var searchWordPositions = [[]];
+	var searchWordPositions = [];
 	var showAnswer = false;
+	var searchWordsTableWithAnswer;
+	var searchWordsTableWithoutAnswer;
 
 	function onCreate()
 	{
 		searchArray = createSearchArray();
-		printSearchArray();
+		searchWordsTableWithoutAnswer = printSearchArray();
 	}
 
 	function createSearchArray()
@@ -50,14 +52,12 @@
 		{
 			var wordCount = searchWords[i].length;
 			var colIndex = Math.floor(Math.random() * (cols - wordCount)) + 1;
-			var wordPosition = [];
 			for(var j = 0; j < wordCount; j++)
 			{
 				searchArray[uniqueRowIndexes[i]][colIndex] = searchWords[i].charAt(j);
-				wordPosition.push(uniqueRowIndexes[i]+"-"+colIndex);
+				searchWordPositions.push(uniqueRowIndexes[i]+"-"+colIndex);
 				colIndex++;
 			}
-			searchWordPositions.push(wordPosition);
     	}
 		return searchArray;
 	}
@@ -65,14 +65,13 @@
 	function printSearchArray()
 	{
 		//print array values in table format
-		alert(showAnswer);
 		var result = "<table cellspacing=5>";
 		for (var i = 0; i < searchArray.length; i++) 
 		{
 			result += "<tr>";
     		for (var j = 0; j < searchArray[i].length; j++) 
 			{
-				if(showAnswer)
+				if(showAnswer && searchWordPositions.includes(i+"-"+j))
 				{
 					result += "<td class=\"colorBorder\">" + searchArray[i][j] + "</td>";
 				}
@@ -86,13 +85,13 @@
 		result += "</tr>";
 		result += "</table>";
 		document.getElementById("table").innerHTML = result;
+		return result;
 	}
 	
 	function onShow() 
 	{
 		showAnswer = true;
-		printSearchArray();
-		document.getElementById("answer").innerHTML = searchWordPositions;
+		searchWordsTableWithAnswer = printSearchArray();
 	}
 </script>
  </head>
@@ -134,7 +133,6 @@
 		<input type="button" value="Create" onclick="onCreate();"/>
 		<input type="button" value="Show" onclick="onShow();"/>
 		<p id="table"></p>
-		<p id="answer"></p>
 	</div>
    </form>
    </div>
