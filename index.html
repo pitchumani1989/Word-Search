@@ -92,12 +92,20 @@
 	
 	function onWorkSheetClick() 
 	{
+		document.getElementById("previewLink1").style.background = "#fff";
+		document.getElementById("previewLink1").style.color = "#000";
+	    document.getElementById("previewLink2").style.background = "#4286f4";
+		document.getElementById("previewLink2").style.color = "#fff";		
 		showAnswer = false;
 		searchWordsTableWithOutAnswer = printSearchArray();
 	}
 	
 	function onAnswerKeyClick() 
 	{
+		document.getElementById("previewLink1").style.background = "#4286f4";
+		document.getElementById("previewLink1").style.color = "#fff";
+		document.getElementById("previewLink2").style.background = "#fff";
+		document.getElementById("previewLink2").style.color = "#000";
 		showAnswer = true;
 		searchWordsTableWithAnswer = printSearchArray();
 	}
@@ -138,7 +146,7 @@
      		<option value="25">25</option>
      		<option value="30">30</option>
 		</select>
-		<img src="img/create.png" width="40px" height="40px" onclick="onCreate();">
+		<img src="img/create.png" width="40px" height="40px" onclick="onCreate();">Create</img>
 	</div>
    </form>
    </div>
@@ -148,12 +156,11 @@
   <div class="previewContainer">
 		<div class="previewHeading">Preview Worksheet</div><br>
 		<div class="answerContainer">
-			<table width="100%">
-				<tr>
-					<td align="center"><div class="previewLink1" onclick="onWorkSheetClick();">WORKSHEET</div></td>
-					<td align="center"><div class="previewLink2" onclick="onAnswerKeyClick();">ANSWER KEY</div></td>
-				</tr>
-			</table>
+			<div class="previewTabs">
+				<span id="previewLink1" class="previewLink1" onclick="onWorkSheetClick();">WORKSHEET</span>
+				<span id="previewLink2" class="previewLink2" onclick="onAnswerKeyClick();">ANSWER KEY</span>
+			</div>
+			<center><label>Word Search</label></center><br>
 		<div id="wordSearchTable" class="wordSearchTable" align="center"></div>
 		</div>
   	</div>
