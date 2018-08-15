@@ -86,7 +86,7 @@
 		}
 		result += "</tr>";
 		result += "</table>";
-		document.getElementById("table").innerHTML = result;
+		document.getElementById("wordSearchTable").innerHTML = result;
 		return result;
 	}
 	
@@ -98,7 +98,10 @@
 </script>
  </head>
  <body>
-  <div id="container">
+<table>
+<tr>
+<td>
+  <div id="wordSearchContainer">
    <div class="heading"><h1>Word Search</h1></div>
    <div class="outerWrapper">    
     <div class="innerWrapper">
@@ -133,12 +136,27 @@
 	</div>
 	<div>
 		<input type="button" value="Create" onclick="onCreate();"/>
-		<input type="button" value="Show" onclick="onShow();"/>
-		<p id="table"></p>
 	</div>
    </form>
    </div>
   </div>
-   </div>
+  </div>
+  </td>
+  <td>
+  <div class="previewContainer">
+  	<div class="innerWrapper">
+		<div class="previewHeading"><h2>Preview Worksheet</h2></div><br>
+		<div class="answerContainer">
+			<table width="100%">
+				<tr>
+					<td align="center"><div class="previewLink1">WORKSHEET</div></td>
+					<td align="center"><div class="previewLink2" onclick="onShow();">ANSWER KEY</div></td>
+				</tr>
+			</table>
+		<div id="wordSearchTable" class="wordSearchTable" align="center"></div>
+		</div>
+  	</div>
+  </div>
+  </td>
  </body>
 </html>
