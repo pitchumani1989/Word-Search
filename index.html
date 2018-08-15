@@ -67,7 +67,7 @@
 	function printSearchArray()
 	{
 		//print array values in table format
-		var result = "<table cellspacing=5>";
+		var result = "<table>";
 		for (var i = 0; i < searchArray.length; i++) 
 		{
 			result += "<tr>";
@@ -90,7 +90,13 @@
 		return result;
 	}
 	
-	function onShow() 
+	function onWorkSheetClick() 
+	{
+		showAnswer = false;
+		searchWordsTableWithOutAnswer = printSearchArray();
+	}
+	
+	function onAnswerKeyClick() 
 	{
 		showAnswer = true;
 		searchWordsTableWithAnswer = printSearchArray();
@@ -98,13 +104,12 @@
 </script>
  </head>
  <body>
+ <div class="heading"><h1>Word Search</h1></div>
 <table>
 <tr>
 <td>
   <div id="wordSearchContainer">
-   <div class="heading"><h1>Word Search</h1></div>
    <div class="outerWrapper">    
-    <div class="innerWrapper">
    <form>
     <div> 
 		<label>Title</label><br>
@@ -115,7 +120,7 @@
 		<textarea class="unicode" id="searchContent" lang="ta" rows="20" cols="20" placeholder="List down your words here..."></textarea>
 	</div>
 	<div>
-		<label>No. of letters Down</label>
+		<label>Letters Down</label>
 		<select id="lettersDownCount">
      		<option value="5">5</option>
      		<option value="10" selected="selected">10</option>
@@ -124,7 +129,7 @@
      		<option value="25">25</option>
      		<option value="30">30</option>
 		</select>
-		<label>No. of letters Across</label>
+		<label>Letters Across</label>
 		<select id="lettersDownAcross">
      		<option value="5">5</option>
      		<option value="10" selected="selected">10</option>
@@ -133,30 +138,25 @@
      		<option value="25">25</option>
      		<option value="30">30</option>
 		</select>
-	</div>
-	<div>
-		<input type="button" value="Create" onclick="onCreate();"/>
+		<img src="img/create.png" width="40px" height="40px" onclick="onCreate();">
 	</div>
    </form>
    </div>
   </div>
-  </div>
   </td>
   <td>
   <div class="previewContainer">
-  	<div class="innerWrapper">
-		<div class="previewHeading"><h2>Preview Worksheet</h2></div><br>
+		<div class="previewHeading">Preview Worksheet</div><br>
 		<div class="answerContainer">
 			<table width="100%">
 				<tr>
-					<td align="center"><div class="previewLink1">WORKSHEET</div></td>
-					<td align="center"><div class="previewLink2" onclick="onShow();">ANSWER KEY</div></td>
+					<td align="center"><div class="previewLink1" onclick="onWorkSheetClick();">WORKSHEET</div></td>
+					<td align="center"><div class="previewLink2" onclick="onAnswerKeyClick();">ANSWER KEY</div></td>
 				</tr>
 			</table>
 		<div id="wordSearchTable" class="wordSearchTable" align="center"></div>
 		</div>
   	</div>
-  </div>
   </td>
  </body>
 </html>
